@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>识别 · 水果机 — 产品说明页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f9fc;
+            color: #1e3b44;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* 蓝绿色点缀 */
+        .accent-border {
+            border-left: 4px solid #2c9f9a;
+            padding-left: 1rem;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 2.5rem 0 1.8rem;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.6rem 1.5rem;
+            box-shadow: 0 6px 14px rgba(28, 110, 110, 0.06), 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.15s ease, box-shadow 0.2s;
+            border: 1px solid rgba(44, 159, 154, 0.08);
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(36, 126, 120, 0.08);
+        }
+        .card h3 {
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 0.6rem;
+            color: #0d4f54;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .card h3::before {
+            content: "🍒";
+            font-size: 1.2rem;
+        }
+        .card:nth-child(2) h3::before { content: "⚡"; }
+        .card:nth-child(3) h3::before { content: "🎯"; }
+        .card:nth-child(4) h3::before { content: "📘"; }
+
+        /* hero 区 */
+        .hero {
+            padding: 2rem 0 1.2rem;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #0b3b40;
+            margin-bottom: 0.4rem;
+        }
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #3e6b6e;
+            border-bottom: 2px solid #c6e5e3;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+        }
+        .hero p {
+            max-width: 720px;
+            color: #295257;
+            margin-top: 0.5rem;
+        }
+
+        /* 摘要段落 + 句子内链接 */
+        .intro-text {
+            background: #dff0ef;
+            padding: 1.6rem 1.8rem;
+            border-radius: 32px 12px 32px 12px;
+            margin: 1.8rem 0 0.5rem;
+            font-size: 1.05rem;
+        }
+        .intro-text a {
+            color: #1b7873;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 2px;
+            text-decoration-color: #9acdc9;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+        .intro-text a:hover {
+            color: #06423f;
+            text-decoration-color: #06423f;
+        }
+
+        /* 使用建议 & 场景 */
+        .advice-block {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem 1.8rem;
+            margin: 2.2rem 0;
+            border: 1px solid #cce3e1;
+            box-shadow: 0 2px 12px rgba(34, 100, 95, 0.04);
+        }
+        .advice-block h2 {
+            font-size: 1.4rem;
+            font-weight: 550;
+            color: #165b5a;
+            margin-bottom: 0.8rem;
+            border-left: 6px solid #2c9f9a;
+            padding-left: 0.8rem;
+        }
+        .advice-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.8rem;
+        }
+        .advice-list li {
+            flex: 1 1 200px;
+            padding: 0.5rem 0.2rem;
+            font-size: 0.98rem;
+            color: #1d4e4e;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .advice-list li::before {
+            content: "—";
+            color: #3ea6a0;
+            font-weight: 300;
+        }
+
+        /* FAQ 摘要 (极简) */
+        .faq-mini {
+            background: #ecf7f6;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem 1.8rem;
+            margin: 2rem 0 1rem;
+        }
+        .faq-mini h2 {
+            font-size: 1.2rem;
+            font-weight: 550;
+            color: #11524f;
+            margin-bottom: 0.6rem;
+        }
+        .faq-item {
+            margin: 0.9rem 0;
+        }
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            color: #1d5d59;
+            margin-bottom: 0.15rem;
+        }
+        .faq-item p {
+            color: #2c5a59;
+            font-size: 0.95rem;
+        }
+
+        /* 访问说明（克制） */
+        .access-note {
+            background: transparent;
+            border: 2px dashed #3ba39d;
+            border-radius: 40px 12px 40px 12px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.8rem 0;
+            text-align: center;
+            color: #1c615d;
+            font-size: 0.95rem;
+        }
+        .access-note a {
+            color: #0c5c57;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* 响应式 */
+        @media (min-width: 560px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+        }
+        @media (min-width: 900px) {
+            .card-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            body {
+                padding: 2rem 2.5rem;
+            }
+        }
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .intro-text {
+                padding: 1.2rem 1.2rem;
+            }
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding: 0.8rem 0;
+            border-top: 1px solid #c9dfdd;
+            font-size: 0.85rem;
+            color: #537b7a;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero -->
+    <div class="hero">
+        <h1>水果机 · 产品说明</h1>
+        <span class="sub">快速识别 · 轻量工具</span>
+        <p class="accent-border">如果你正在寻找一个直接了解「水果机」用途的页面，这里提供了摘要、亮点、场景以及克制的使用指引。没有夸大，只有事实。</p>
+    </div>
+
+    <!-- 摘要段落 + 自然嵌入链接 -->
+    <div class="intro-text">
+        <p><strong>摘要</strong> —— 对很多用户来说，第一次看到“水果机”这个名称时，会下意识联想到经典的水果主题娱乐或模拟类工具。实际上，<a href="https://zh-fruitgames.com">水果机</a> 指向的是一个以水果元素为基础的交互网站，其核心逻辑围绕视觉识别与快速匹配。本站不提供任何形式的现金交易或博弈服务，而是聚焦于轻量级、休闲场景下的信息展示与操作引导。</p>
+    </div>
+
+    <!-- 网格卡片（亮点） -->
+    <div class="card-grid">
+        <div class="card">
+            <h3>即开即识</h3>
+            <p>打开页面即可看到核心界面，无需注册或下载。适合想要快速评估网站用途的用户。</p>
+        </div>
+        <div class="card">
+            <h3>反馈明确</h3>
+            <p>每次操作都有清晰的视觉或文字响应，降低认知负担。适合新手与轻度使用者。</p>
+        </div>
+        <div class="card">
+            <h3>轻量结构</h3>
+            <p>页面本身经过压缩与适配，移动端下加载快，流量消耗低。2G/3G 环境下仍可流畅浏览。</p>
+        </div>
+        <div class="card">
+            <h3>无跟踪设计</h3>
+            <p>不嵌入第三方分析脚本，不收集个人身份信息。你只是来了解产品，数据隐私受到尊重。</p>
+        </div>
+    </div>
+
+    <!-- 使用建议 + 场景 -->
+    <div class="advice-block">
+        <h2>使用建议 & 典型场景</h2>
+        <ul class="advice-list">
+            <li>想快速判断该网站是否与自己的需求匹配——直接浏览首页，5秒内即可建立认知。</li>
+            <li>需要向朋友或同事展示「水果机」的基本形态——用手机截图或录屏即可，无需登录。</li>
+            <li>研究轻量级交互设计或水果主题的布局风格——可以作为对照案例。</li>
+            <li>单纯好奇“水果机”在中文互联网中的实际形态——此页面呈现的就是当前版本。</li>
+        </ul>
+        <p style="margin-top: 1rem; font-size: 0.95rem; color: #20625e;">⚠️ 提示：该网站不涉及金融、抽奖或实物兑换。如果你遇到要求转账或输入敏感信息的弹窗，请立刻关闭页面。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <h2>常见疑问 · 摘要</h2>
+        <div class="faq-item">
+            <strong>「水果机」需要付费吗？</strong>
+            <p>目前网站的核心浏览与基础功能均免费，没有隐藏订阅或强制付费环节。未来如有变动，会在页面内明确提示。</p>
+        </div>
+        <div class="faq-item">
+            <strong>移动端能正常使用吗？</strong>
+            <p>可以。版面针对手机屏幕做了断点适配，按钮和卡片在宽度320px以上的设备上均可正常操作。</p>
+        </div>
+        <div class="faq-item">
+            <strong>是否收集Cookies？</strong>
+            <p>本站不使用跨站追踪型Cookie，仅可能存储一次性的本地偏好（如主题选择），且不会上传至任何服务器。</p>
+        </div>
+    </div>
+
+    <!-- 可信但克制的访问说明 -->
+    <div class="access-note">
+        如果你对上述说明感到认可，并希望直接查看产品界面，可以访问 <a href="https://zh-fruitgames.com">水果机</a>。这是一个独立的网站，请根据你自己的判断决定是否继续。我们建议在稳定的网络环境下浏览。
+    </div>
+
+    <footer>
+        <span>基于产品说明方向 · 内容仅供参考 · 版本 2025</span>
+    </footer>
+</div>
+</body>
+</html>
